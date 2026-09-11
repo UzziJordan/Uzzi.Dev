@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+.cms-input {
+  @apply w-full bg-black border border-white/10 rounded-lg px-4 py-3 text-white outline-none transition;
+}
+
+.cms-input:focus {
+  @apply border-white/30;
+}
+
+.cms-input::placeholder {
+  @apply text-gray-700;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
