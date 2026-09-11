@@ -230,8 +230,8 @@ const About = () => {
                 index === 0
                   ? "ml-0"
                   : index === 1
-                  ? "ml-[8%] md:ml-[12%]"
-                  : "ml-[16%] md:ml-[24%]";
+                  ? "ml-3 sm:ml-[8%] md:ml-[12%]"
+                  : "ml-6 sm:ml-[16%] md:ml-[24%]";
 
               return (
                 <Reveal
@@ -258,7 +258,7 @@ const About = () => {
           </div>
 
           {/* Philosophy paragraph */}
-          <Reveal className="mt-20 md:mt-10 ml-[20%] md:ml-[60%] max-w-125" delay={0.12}>
+          <Reveal className="mt-12 md:mt-10 ml-0 sm:ml-[20%] md:ml-[60%] max-w-125" delay={0.12}>
             <p className="text-[16px] md:text-[18px] leading-[1.8] text-gray-500 whitespace-pre-line">
               {profile?.philosophyParagraph ||
                 "I care about building products that are clear, useful and built to last."}

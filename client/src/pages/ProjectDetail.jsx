@@ -314,7 +314,7 @@ const ProjectDetail = () => {
               </h2>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-px bg-white/10">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-px bg-white/10">
               {keyFeatures.map(
                 (feature, index) => (
                   <div
@@ -356,7 +356,7 @@ const ProjectDetail = () => {
             </h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 border-y border-white/10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 border-y border-white/10">
             {[
               {
                 title: "FRONTEND",
@@ -385,7 +385,7 @@ const ProjectDetail = () => {
             ].map((category) => (
               <div
                 key={category.title}
-                className="p-6 md:p-8 border-r border-white/10 last:border-r-0"
+                className="p-6 md:p-8 border-b sm:border-b-0 sm:border-r border-white/10 last:border-b-0 sm:last:border-r-0"
               >
                 <p className="text-[9px] font-mono tracking-[0.2em] text-gray-700">
                   {category.title}

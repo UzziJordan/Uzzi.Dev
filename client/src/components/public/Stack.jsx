@@ -106,7 +106,7 @@ const Stack = () => {
             </span>
           </div>
 
-          <h2 className="mt-10 border-b border-white/10 pb-10 text-[66px] font-semibold leading-[0.82] tracking-[-0.07em] text-white">
+          <h2 className="mt-8 border-b border-white/10 pb-8 text-4xl sm:text-5xl md:text-6xl lg:text-[66px] font-semibold leading-[0.9] lg:leading-[0.82] tracking-[-0.07em] text-white">
             MY TOOLBOX
           </h2>
         </Reveal>
@@ -144,7 +144,7 @@ const StackCategory = ({ category, tools }) => {
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-[27%_73%] lg:gap-0">
         {/* CATEGORY INFO */}
         <div className="">
-          <h3 className="font-mono text-[15px] mt-10 font-semibold tracking-[0.35em] text-white">
+          <h3 className="font-mono text-[15px] mt-6 lg:mt-10 font-semibold tracking-[0.35em] text-white">
             {category.categoryName}
           </h3>
 

@@ -147,7 +147,8 @@ const Home = () => {
                 onClick={() => scrollToSection("projects")}
                 className="
                   group
-                  w-48.25
+                  w-full
+                  sm:w-48.25
                   bg-white
                   text-black
                   px-6
@@ -175,7 +176,8 @@ const Home = () => {
                 onClick={() => scrollToSection("contact")}
                 className="
                   group
-                  w-44.25
+                  w-full
+                  sm:w-44.25
                   border
                   border-white/15
                   text-white
