@@ -35,7 +35,7 @@ const Login = () => {
         formData.password
       );
 
-      login(data.user);
+      login(data.user, data.token);
 
       navigate("/admin/dashboard");
     } catch (error) {

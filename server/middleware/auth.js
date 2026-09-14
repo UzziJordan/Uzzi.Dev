@@ -2,6 +2,11 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
 const getSessionToken = (req) => {
+  const authHeader = req.headers.authorization;
+  if (authHeader && authHeader.startsWith("Bearer ")) {
+    return authHeader.split(" ")[1];
+  }
+
   const cookie = req.headers.cookie || "";
   const session = cookie
     .split(";")

@@ -6,11 +6,13 @@ const generateToken = require("../utils/generateToken");
 const SESSION_COOKIE = "admin_session";
 const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000;
 
+const isProduction = process.env.NODE_ENV === "production";
+
 const sessionCookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: process.env.COOKIE_SAME_SITE || "lax",
-  path: "/api",
+  secure: isProduction,
+  sameSite: process.env.COOKIE_SAME_SITE || (isProduction ? "none" : "lax"),
+  path: "/",
   maxAge: SESSION_DURATION,
 };
 
@@ -58,6 +60,7 @@ const login = async (req, res) => {
       .json({
         success: true,
         message: "Login successful",
+        token,
         user: {
           id: user._id,
           username: user.username,
@@ -75,12 +78,7 @@ const login = async (req, res) => {
 
 const logout = (req, res) => {
   res
-    .clearCookie(SESSION_COOKIE, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.COOKIE_SAME_SITE || "lax",
-      path: "/api",
-    })
+    .clearCookie(SESSION_COOKIE, sessionCookieOptions)
     .status(200)
     .json({ success: true, message: "Logged out" });
 };
