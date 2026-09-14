@@ -8,7 +8,7 @@ import { motion } from "framer-motion";
 
 const PublicHome = () => {
   return (
-    <div className="bg-[#08090a] text-white">
+    <div className="public-shell bg-[#08090a] text-white">
       <Navbar />
 
       <motion.main

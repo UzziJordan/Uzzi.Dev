@@ -9,4 +9,14 @@ const loginAdmin = async (username, password) => {
   return response.data;
 };
 
+export const getCurrentAdmin = async () => {
+  const response = await api.get("/auth/me");
+  return response.data;
+};
+
+export const logoutAdmin = async () => {
+  const response = await api.post("/auth/logout");
+  return response.data;
+};
+
 export default loginAdmin;

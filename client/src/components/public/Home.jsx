@@ -45,6 +45,15 @@ const Home = () => {
   }
 
   const technologies = profile?.heroTechnologyLabels || [];
+  const reveal = (delay) => ({
+    initial: { opacity: 0, y: reduceMotion ? 0 : 24 },
+    animate: { opacity: 1, y: 0 },
+    transition: {
+      duration: reduceMotion ? 0.01 : 0.55,
+      delay: reduceMotion ? 0 : delay,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  });
 
   return (
     <section
@@ -80,22 +89,17 @@ const Home = () => {
         <div className="w-full grid lg:grid-cols-[1.1fr_0.9fr] gap-12 lg:gap-10 items-center">
 
           {/* LEFT */}
-          <motion.div
-            className="max-w-170"
-            initial={{ opacity: 0, y: reduceMotion ? 0 : 28 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.7, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="max-w-170">
 
             {/* LOCATION / AVAILABILITY */}
-            <div className="flex items-center gap-3 mb-9">
+            <motion.div className="flex items-center gap-3 mb-9" {...reveal(0.08)}>
               <span className="w-1.5 h-1.5 rounded-full bg-blue-500" />
 
               <span className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.32em] text-gray-500">
                 {profile?.portraitCaption ||
                   "LAGOS, NIGERIA — OPEN TO WORK"}
               </span>
-            </div>
+            </motion.div>
 
             {/* ROLE */}
             <motion.h1
@@ -108,22 +112,20 @@ const Home = () => {
                 uppercase
                 text-white
               "
-              initial={{ opacity: 0, y: reduceMotion ? 0 : 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: reduceMotion ? 0.01 : 0.65, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
+              {...reveal(0.22)}
             >
               {profile?.role || "FULL-STACK DEVELOPER"}
             </motion.h1>
 
             {/* INTRO */}
-            <p className="mt-10 max-w-142.5 text-[17px] md:text-[19px] leading-normal text-gray-500">
+            <motion.p className="mt-10 max-w-142.5 text-[17px] md:text-[19px] leading-normal text-gray-500" {...reveal(0.4)}>
               {profile?.heroIntro ||
                 "I build modern, scalable web applications — from intuitive interfaces to powerful backend systems."}
-            </p>
+            </motion.p>
 
             {/* TECHNOLOGIES */}
             {technologies.length > 0 && (
-              <div className="mt-9 border-y border-white/20 py-4">
+              <motion.div className="mt-9 border-y border-white/20 py-4" {...reveal(0.56)}>
                 <div className="flex flex-wrap items-center gap-x-7 gap-y-3">
                   {technologies.map((technology, index) => (
                     <motion.span
@@ -131,22 +133,23 @@ const Home = () => {
                       className="text-[9px] md:text-[10px] font-mono uppercase tracking-[0.25em] text-gray-600"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
-                      transition={{ delay: reduceMotion ? 0 : 0.35 + index * 0.06 }}
+                      transition={{ delay: reduceMotion ? 0 : 0.68 + index * 0.06 }}
                     >
                       {technology}
                     </motion.span>
                   ))}
                 </div>
-              </div>
+              </motion.div>
             )}
 
             {/* ACTIONS */}
             <div className="flex flex-wrap gap-4 mt-10">
-              <button
+              <motion.button
                 type="button"
                 onClick={() => scrollToSection("projects")}
+                {...reveal(0.82)}
                 className="
-                  group
+                  public-action group
                   w-full
                   sm:w-48.25
                   bg-white
@@ -169,13 +172,14 @@ const Home = () => {
                 <span className="text-base transition-transform group-hover:translate-x-1">
                   ↗
                 </span>
-              </button>
+              </motion.button>
 
-              <button
+              <motion.button
                 type="button"
                 onClick={() => scrollToSection("contact")}
+                {...reveal(0.94)}
                 className="
-                  group
+                  public-action group
                   w-full
                   sm:w-44.25
                   border
@@ -199,22 +203,22 @@ const Home = () => {
                 <span className="text-base text-gray-500 transition-transform group-hover:translate-x-1 group-hover:text-white">
                   ↗
                 </span>
-              </button>
+              </motion.button>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT — PORTRAIT */}
           <motion.div
             className="relative flex justify-center lg:justify-end"
             initial={{ opacity: 0, scale: reduceMotion ? 1 : 0.96, y: reduceMotion ? 0 : 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: reduceMotion ? 0.01 : 0.7, delay: reduceMotion ? 0 : 0.18, ease: [0.22, 1, 0.36, 1] }}
+            transition={{ duration: reduceMotion ? 0.01 : 0.7, delay: reduceMotion ? 0 : 1.08, ease: [0.22, 1, 0.36, 1] }}
           >
 
             {/* BLUE CORNER DETAIL */}
             <div className="absolute -top-7 left-4 lg:-left-3 w-16 h-16 border-l border-t border-blue-500/50" />
 
-            <div className="relative w-full max-w-91.25 border border-white/15 bg-[#0b0c0e]">
+            <div className="public-card relative w-full max-w-91.25 border border-white/15 bg-[#0b0c0e]">
 
               {/* IMAGE HEADER */}
               <div className="h-13 px-4 flex items-center justify-between border-b border-white/15">

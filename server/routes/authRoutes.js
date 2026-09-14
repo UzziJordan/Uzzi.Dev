@@ -1,12 +1,14 @@
 const express = require("express");
 
-const { login } = require("../controllers/authController");
+const { login, logout } = require("../controllers/authController");
 const { protect } = require("../middleware/auth");
 const { loginRules } = require("../validators/authValidator");
 
 const router = express.Router();
 
 router.post("/login", loginRules, login);
+
+router.post("/logout", logout);
 
 router.get("/me", protect, (req, res) => {
   res.json({

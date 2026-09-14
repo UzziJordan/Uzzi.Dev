@@ -1,40 +1,54 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import {
+  getCurrentAdmin,
+  logoutAdmin,
+} from "../services/authService";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [token, setToken] = useState(
-    localStorage.getItem("adminToken")
-  );
+  const [user, setUser] = useState(null);
+  const [isAuthReady, setIsAuthReady] = useState(false);
 
-  const [user, setUser] = useState(
-    JSON.parse(localStorage.getItem("adminUser")) || null
-  );
+  useEffect(() => {
+    const restoreSession = async () => {
+      // Remove tokens left behind by the previous localStorage approach.
+      localStorage.removeItem("adminToken");
+      localStorage.removeItem("adminUser");
 
-  const login = (token, user) => {
-    localStorage.setItem("adminToken", token);
-    localStorage.setItem("adminUser", JSON.stringify(user));
+      try {
+        const data = await getCurrentAdmin();
+        setUser(data.user);
+      } catch {
+        setUser(null);
+      } finally {
+        setIsAuthReady(true);
+      }
+    };
 
-    setToken(token);
+    restoreSession();
+  }, []);
+
+  const login = (user) => {
     setUser(user);
   };
 
-  const logout = () => {
-    localStorage.removeItem("adminToken");
-    localStorage.removeItem("adminUser");
-
-    setToken(null);
-    setUser(null);
+  const logout = async () => {
+    try {
+      await logoutAdmin();
+    } finally {
+      setUser(null);
+    }
   };
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = !!user;
 
   return (
     <AuthContext.Provider
       value={{
-        token,
         user,
         isAuthenticated,
+        isAuthReady,
         login,
         logout,
       }}

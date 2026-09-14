@@ -13,7 +13,63 @@
 }
 
 html {
+  min-height: 100%;
+  background: #08090a;
   scroll-behavior: smooth;
+}
+
+body,
+#root {
+  min-height: 100vh;
+  margin: 0;
+  background: #08090a;
+}
+
+.public-shell {
+  overflow-x: clip;
+}
+
+.public-shell :is(a, button, input, textarea) {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.public-shell :is(a, button, input, textarea):focus-visible {
+  outline: 2px solid #60a5fa;
+  outline-offset: 4px;
+}
+
+.public-action,
+.public-card,
+.public-chip,
+.public-row {
+  transition:
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 280ms ease,
+    background-color 280ms ease,
+    color 280ms ease,
+    box-shadow 280ms ease;
+}
+
+@media (hover: hover) {
+  .public-action:hover {
+    transform: translateY(-2px);
+  }
+
+  .public-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(96, 165, 250, 0.42);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.28);
+  }
+
+  .public-chip:hover {
+    border-color: rgba(96, 165, 250, 0.5);
+    color: #dbeafe;
+    background: rgba(59, 130, 246, 0.08);
+  }
+
+  .public-row:hover {
+    background: rgba(255, 255, 255, 0.025);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -27,5 +83,17 @@ html {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

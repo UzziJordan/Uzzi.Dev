@@ -135,7 +135,7 @@ const ProjectDetail = () => {
       : null;
 
   return (
-    <div className="min-h-screen bg-[#08090a] text-white">
+    <div className="public-shell min-h-screen bg-[#08090a] text-white">
       <Navbar />
 
       <motion.main
@@ -172,7 +172,7 @@ const ProjectDetail = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[9px] font-mono tracking-[0.22em] text-white hover:text-blue-500"
+                    className="public-action inline-block text-[9px] font-mono tracking-[0.22em] text-white hover:text-blue-500"
                   >
                     LIVE WEBSITE ↗
                   </a>
@@ -183,7 +183,7 @@ const ProjectDetail = () => {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-[9px] font-mono tracking-[0.22em] text-gray-600 hover:text-white"
+                    className="public-action inline-block text-[9px] font-mono tracking-[0.22em] text-gray-600 hover:text-white"
                   >
                     GITHUB REPO ↗
                   </a>
@@ -319,7 +319,7 @@ const ProjectDetail = () => {
                 (feature, index) => (
                   <div
                     key={`${feature.title}-${index}`}
-                    className="bg-[#08090a] min-h-47.5 p-7"
+                  className="public-card bg-[#08090a] min-h-47.5 p-7"
                   >
                     <span className="text-[9px] font-mono tracking-[0.2em] text-gray-700">
                       {String(
@@ -385,7 +385,7 @@ const ProjectDetail = () => {
             ].map((category) => (
               <div
                 key={category.title}
-                className="p-6 md:p-8 border-b sm:border-b-0 sm:border-r border-white/10 last:border-b-0 sm:last:border-r-0"
+                className="public-row p-6 md:p-8 border-b sm:border-b-0 sm:border-r border-white/10 last:border-b-0 sm:last:border-r-0"
               >
                 <p className="text-[9px] font-mono tracking-[0.2em] text-gray-700">
                   {category.title}
@@ -429,7 +429,7 @@ const ProjectDetail = () => {
                 (step, index) => (
                   <div
                     key={`${step.title}-${index}`}
-                    className="grid md:grid-cols-[100px_260px_1fr] gap-6 md:gap-10 py-7 border-b border-white/10"
+                    className="public-row grid md:grid-cols-[100px_260px_1fr] gap-6 md:gap-10 py-7 border-b border-white/10"
                   >
                     <span className="text-[9px] font-mono tracking-[0.2em] text-gray-700">
                       {String(
@@ -472,7 +472,7 @@ const ProjectDetail = () => {
                 (challenge, index) => (
                   <div
                     key={`${challenge}-${index}`}
-                    className="flex gap-6 py-6 border-t border-white/10"
+                    className="public-row flex gap-6 py-6 border-t border-white/10"
                   >
                     <span className="shrink-0 text-[9px] font-mono tracking-[0.2em] text-gray-700">
                       {String(
@@ -508,7 +508,7 @@ const ProjectDetail = () => {
                     `/projects/${nextProject.slug}`
                   )
                 }
-                className="group mt-8 block text-left"
+                className="public-action group mt-8 block text-left"
               >
                 <span className="text-[9px] font-mono tracking-[0.2em] text-blue-500">
                   PROJECT{" "}

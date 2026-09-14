@@ -159,14 +159,18 @@ const StackCategory = ({ category, tools }) => {
             const isActive = activeIndex === index;
 
             return (
-              <div
+              <button
+                type="button"
                 key={`${tool.name}-${index}`}
-                className="relative"
+                className="relative w-full text-left"
                 onMouseEnter={() => setActiveIndex(index)}
                 onMouseLeave={() => setActiveIndex(null)}
+                onFocus={() => setActiveIndex(index)}
+                onBlur={() => setActiveIndex(null)}
+                onClick={() => setActiveIndex(isActive ? null : index)}
               >
                 <div
-                  className={`relative min-h-29 border-l border-white/10 px-7 py-7 transition-all duration-300 md:min-h-25 ${
+                  className={`public-row relative min-h-29 border-l border-white/10 px-7 py-7 md:min-h-25 ${
                     isActive
                       ? "bg-[#0a0c0f]"
                       : "bg-transparent"
@@ -209,7 +213,7 @@ const StackCategory = ({ category, tools }) => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </button>
             );
           })}
         </div>

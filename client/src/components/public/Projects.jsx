@@ -88,7 +88,7 @@ const Projects = () => {
                 return (
                   <Reveal
                     key={project._id}
-                    className="group border border-white/10 bg-[#0a0c0e] transition-colors duration-300 hover:border-white/20"
+                    className="public-card group border border-white/10 bg-[#0a0c0e] hover:border-white/20"
                     delay={(index % 3) * 0.08}
                   >
                     <div
@@ -175,7 +175,7 @@ const Projects = () => {
                                 (technology) => (
                                   <span
                                     key={technology}
-                                    className="border border-white/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.15em] text-[#718091]"
+                                    className="public-chip border border-white/10 px-3 py-2 font-mono text-[9px] uppercase tracking-[0.15em] text-[#718091]"
                                   >
                                     {technology}
                                   </span>
@@ -191,7 +191,7 @@ const Projects = () => {
                         <div className="mt-8 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5">
                           <Link
                             to={`/projects/${project.slug}`}
-                            className="inline-flex h-10 items-center gap-3 border border-white/15 px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-white transition hover:border-blue-500 hover:text-blue-400"
+                            className="public-action inline-flex h-10 items-center gap-3 border border-white/15 px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-white hover:border-blue-500 hover:text-blue-400"
                           >
                             View Project
                             <span className="text-sm">
@@ -204,7 +204,7 @@ const Projects = () => {
                               href={project.githubUrl}
                               target="_blank"
                               rel="noreferrer"
-                              className="inline-flex h-10 items-center gap-3 border border-white/10 px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#718091] transition hover:border-white/25 hover:text-white"
+                              className="public-action inline-flex h-10 items-center gap-3 border border-white/10 px-5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#718091] hover:border-white/25 hover:text-white"
                             >
                               GitHub
                               <span className="text-sm">
@@ -228,7 +228,7 @@ const Projects = () => {
             <div className="mt-10 flex justify-center">
               <Link
                 to="/projects"
-                className="group inline-flex h-12 items-center gap-4 border border-white/15 px-7 font-mono text-[10px] uppercase tracking-[0.25em] text-[#9aa9b8] transition hover:border-white/30 hover:text-white"
+                className="public-action group inline-flex h-12 items-center gap-4 border border-white/15 px-7 font-mono text-[10px] uppercase tracking-[0.25em] text-[#9aa9b8] hover:border-white/30 hover:text-white"
               >
                 View All Projects
 

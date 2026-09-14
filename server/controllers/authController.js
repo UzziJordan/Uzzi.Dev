@@ -3,6 +3,17 @@ const bcrypt = require("bcryptjs");
 const User = require("../models/User");
 const generateToken = require("../utils/generateToken");
 
+const SESSION_COOKIE = "admin_session";
+const SESSION_DURATION = 7 * 24 * 60 * 60 * 1000;
+
+const sessionCookieOptions = {
+  httpOnly: true,
+  secure: process.env.NODE_ENV === "production",
+  sameSite: process.env.COOKIE_SAME_SITE || "lax",
+  path: "/api",
+  maxAge: SESSION_DURATION,
+};
+
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -41,17 +52,19 @@ const login = async (req, res) => {
     // Generate token
     const token = generateToken(user._id);
 
-    res.status(200).json({
-      success: true,
-      message: "Login successful",
-      token,
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-        role: user.role,
-      },
-    });
+    res
+      .cookie(SESSION_COOKIE, token, sessionCookieOptions)
+      .status(200)
+      .json({
+        success: true,
+        message: "Login successful",
+        user: {
+          id: user._id,
+          username: user.username,
+          email: user.email,
+          role: user.role,
+        },
+      });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -60,6 +73,19 @@ const login = async (req, res) => {
   }
 };
 
+const logout = (req, res) => {
+  res
+    .clearCookie(SESSION_COOKIE, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: process.env.COOKIE_SAME_SITE || "lax",
+      path: "/api",
+    })
+    .status(200)
+    .json({ success: true, message: "Logged out" });
+};
+
 module.exports = {
   login,
+  logout,
 };

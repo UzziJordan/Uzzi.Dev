@@ -139,6 +139,7 @@ const About = () => {
               <div
                 key={`${stat.value}-${index}`}
                 className={`
+                  public-card
                   min-h-37.5
                   px-6
                   md:px-8
@@ -166,7 +167,7 @@ const About = () => {
             {/* Empty fallback structure if no statistics exist */}
             {statistics.length === 0 && (
               <>
-                <div className="min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/15">
+                <div className="public-card min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/15">
                   <div className="text-[clamp(2.5rem,4vw,4.5rem)] leading-none tracking-[-0.06em] font-bold">
                     05+
                   </div>
@@ -175,7 +176,7 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/15">
+                <div className="public-card min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/15">
                   <div className="text-[clamp(2.5rem,4vw,4.5rem)] leading-none tracking-[-0.06em] font-bold">
                     Full Stack
                   </div>
@@ -184,7 +185,7 @@ const About = () => {
                   </div>
                 </div>
 
-                <div className="min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center">
+                <div className="public-card min-h-37.5 px-6 md:px-8 py-8 flex flex-col justify-center">
                   <div className="text-[clamp(2.5rem,4vw,4.5rem)] leading-none tracking-[-0.06em] font-bold">
                     ∞
                   </div>

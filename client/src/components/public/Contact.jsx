@@ -2,6 +2,35 @@ import { useEffect, useState } from "react";
 import { getContact } from "../../services/contactService";
 import { sendMessage } from "../../services/messageService";
 import Reveal from "./Reveal";
+import { Mail } from "lucide-react";
+
+const GitHubIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.18-3.37-1.18-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.35 1.09 2.92.83.09-.65.35-1.09.64-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02A9.6 9.6 0 0 1 12 6.76c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.33 4.68-4.56 4.93.36.31.68.9.68 1.81v2.67c0 .27.18.58.69.48A10 10 0 0 0 12 2Z" />
+  </svg>
+);
+
+const LinkedInIcon = ({ className }) => (
+  <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+    <path d="M5.35 3.5a1.85 1.85 0 1 0 0 3.7 1.85 1.85 0 0 0 0-3.7ZM3.75 8.7h3.2V20h-3.2V8.7Zm5.2 0H12v1.55h.04c.43-.81 1.49-1.66 3.06-1.66 3.27 0 3.88 2.15 3.88 4.94V20h-3.2v-5.72c0-1.36-.02-3.11-1.9-3.11-1.9 0-2.2 1.48-2.2 3.01V20H8.48V8.7h.47Z" />
+  </svg>
+);
+
+const WhatsAppIcon = ({ className }) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="1.8"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
+    <path d="M20.5 11.8a8.3 8.3 0 0 1-12.3 7.3L3.5 20.5l1.4-4.6A8.3 8.3 0 1 1 20.5 11.8Z" />
+    <path d="M9.1 7.8c.2-.5.5-.5.8-.5h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4 0 .6l-.5.7c.5 1 1.3 1.8 2.3 2.3l.7-.5c.2-.1.4-.1.6 0l1.6.7c.3.1.4.3.4.5v.5c0 .4-.2.7-.6.8-.5.2-1.2.2-2.2-.2-1.2-.5-2.4-1.4-3.3-2.3-.9-.9-1.8-2.1-2.3-3.3-.4-1-.4-1.7-.2-2.2Z" />
+  </svg>
+);
 
 const Contact = () => {
   const [contact, setContact] = useState(null);
@@ -107,24 +136,24 @@ const Contact = () => {
                 {
                   label: "GITHUB",
                   url: channels?.githubUrl,
-                  icon: "github",
+                  Icon: GitHubIcon,
                 },
                 {
                   label: "LINKEDIN",
                   url: channels?.linkedinUrl,
-                  icon: "linkedin",
+                  Icon: LinkedInIcon,
                 },
                 {
                   label: "WHATSAPP",
                   url: channels?.whatsappUrl,
-                  icon: "whatsapp",
+                  Icon: WhatsAppIcon,
                 },
                 {
                   label: "EMAIL",
                   url: channels?.email
                     ? `mailto:${channels.email}`
                     : "",
-                  icon: "email",
+                  Icon: Mail,
                 },
               ].map((channel) => (
                 <a
@@ -140,10 +169,12 @@ const Contact = () => {
                       ? undefined
                       : "noopener noreferrer"
                   }
-                  className="group flex items-center justify-between py-5 border-b border-white/15 hover:border-white/40 transition"
+                  className="public-row group flex items-center justify-between py-5 border-b border-white/15 hover:border-white/40"
                 >
                   <div className="flex items-center gap-5">
-                    <span className="text-gray-600 text-xs">
+                    <channel.Icon className="h-4 w-4 shrink-0 text-gray-500 transition-colors duration-300 group-hover:text-blue-400" />
+
+                    <span className="hidden">
                       {channel.icon === "github" && "◌"}
                       {channel.icon === "linkedin" && "in"}
                       {channel.icon === "whatsapp" && "○"}
@@ -167,7 +198,7 @@ const Contact = () => {
           <Reveal delay={0.12}>
             <form
               onSubmit={handleSubmit}
-              className="border border-white/20 p-8 md:p-10"
+              className="public-card border border-white/20 p-8 md:p-10"
             >
               <div className="space-y-10">
                 {/* NAME */}
@@ -244,7 +275,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full mt-4 bg-white text-black px-6 py-5 flex items-center justify-between text-[11px] font-mono tracking-[0.25em] uppercase hover:bg-gray-200 transition disabled:opacity-50 disabled:cursor-not-allowed"
+                className="public-action w-full mt-4 bg-white text-black px-6 py-5 flex items-center justify-between text-[11px] font-mono tracking-[0.25em] uppercase hover:bg-gray-200 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <span>
                   {loading ? "SENDING..." : "SEND MESSAGE"}

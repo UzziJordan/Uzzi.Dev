@@ -1,21 +1,26 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+const getSessionToken = (req) => {
+  const cookie = req.headers.cookie || "";
+  const session = cookie
+    .split(";")
+    .map((item) => item.trim())
+    .find((item) => item.startsWith("admin_session="));
+
+  return session ? decodeURIComponent(session.slice("admin_session=".length)) : null;
+};
+
 const protect = async (req, res, next) => {
   try {
-    const authHeader = req.headers.authorization;
+    const token = getSessionToken(req);
 
-    if (
-      !authHeader ||
-      !authHeader.startsWith("Bearer ")
-    ) {
+    if (!token) {
       return res.status(401).json({
         success: false,
         message: "Not authorized",
       });
     }
-
-    const token = authHeader.split(" ")[1];
 
     const decoded = jwt.verify(
       token,
